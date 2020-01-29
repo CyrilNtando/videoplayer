@@ -1,7 +1,15 @@
 import React from 'react';
-
-function PlaylistHeader() {
-  return <div>PLaylist Header</div>;
+import StyledPlayListHeader from './styles/StyledPlayListHeader';
+import StyledJourney from './styles/StyledJourney';
+function PlaylistHeader({ active, total }) {
+  return (
+    <StyledPlayListHeader>
+      <p>{active.tittle}</p>
+      <StyledJourney>
+        {active.num} / {total}
+      </StyledJourney>
+    </StyledPlayListHeader>
+  );
 }
 
 export default PlaylistHeader;
