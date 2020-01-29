@@ -1,14 +1,20 @@
 import React from 'react';
-import VideoPlayer from './VideoPlayer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import VideoPlayer from './VideoPlayer';
+import GlobalStyle from '../styles/GlobalStyle';
+
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={VideoPlayer} />
-        <Route exact path='/:activeVideo' component={videoPlayer} />
-      </Switch>
-    </BrowserRouter>
+    <React.Fragment>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={VideoPlayer} />
+          <Route exact path='/:activeVideo' component={VideoPlayer} />
+        </Switch>
+        <GlobalStyle />
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 
