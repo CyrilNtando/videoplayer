@@ -1,11 +1,14 @@
 import React from 'react';
-import videoPlayer from './VideoPlayer';
 import VideoPlayer from './VideoPlayer';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 function App() {
   return (
-    <div>
-      <VideoPlayer />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={VideoPlayer} />
+        <Route exact path='/:activeVideo' component={videoPlayer} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
