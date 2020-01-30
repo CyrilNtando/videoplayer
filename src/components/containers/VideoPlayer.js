@@ -21,7 +21,7 @@ const themeLight = {
   borderPlayed: 'none',
   color: '353535'
 };
-const VideoPlayer = props => {
+const VideoPlayer = ({ match, history, location }) => {
   const videos = JSON.parse(document.querySelector('[name="videos"]').value);
   const [state, setState] = useState({
     videos: videos.playlist,
@@ -30,6 +30,29 @@ const VideoPlayer = props => {
     playlistId: videos.playlistId,
     autoplay: false
   });
+
+  useEffect(() => {
+    const videoId = match.params.activeVideo;
+    if (videoId !== undefined) {
+      const newActiveVideo = state.videos.findIndex(
+        video => video.id === videoId
+      );
+      setState(prev => ({
+        ...prev,
+        activeVideo: prev.videos[newActiveVideo],
+        autoplay: location.autoplay
+      }));
+    } else {
+      history.push({ pathname: `/${state.activeVideo.id}`, autoplay: false });
+    }
+  }, [
+    history,
+    location.autoplay,
+    match.params.activeVideo,
+    state.activeVideo.id,
+    state.videos
+  ]);
+
   const nightModeCallBack = () => {};
   const endCallBack = () => {};
   const progressCallBack = () => {};
