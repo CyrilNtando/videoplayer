@@ -22,12 +22,27 @@ const themeLight = {
   color: '353535'
 };
 const VideoPlayer = props => {
+  const nightModeCallBack = () => {};
+  const endCallBack = () => {};
+  const progressCallBack = () => {};
   return (
     <ThemeProvider theme={state.nightMode ? theme : themeLight}>
-      <StyledVideoPlayer>
-        <Video />
-        <Playlist />
-      </StyledVideoPlayer>
+      {state.videos !== null ? (
+        <StyledVideoPlayer>
+          <Video
+            active={state.activeVideo}
+            autoplay={state.autoplay}
+            endCallBack={endCallBack}
+            progressCallBack={progressCallBack}
+          />
+          <Playlist
+            videos={state.activeVideos}
+            active={state.activeVideo}
+            nightModeCallBack={nightModeCallBack}
+            nightMode={state.nightMode}
+          />
+        </StyledVideoPlayer>
+      ) : null}
     </ThemeProvider>
   );
 };

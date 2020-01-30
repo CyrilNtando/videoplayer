@@ -1,10 +1,17 @@
 import React from 'react';
 import PlaylistItem from '../PlaylistItem';
 import StyledPlaylistItems from '../styles/StyledPlaylistItems';
-function PlaylistItems() {
+function PlaylistItems({ videos, active }) {
   return (
     <StyledPlaylistItems>
-      <PlaylistItem />
+      {videos.map(video => (
+        <PlaylistItem
+          key={video.id}
+          video={video}
+          active={video.id === active.id ? true : false}
+          played={video.played}
+        />
+      ))}
     </StyledPlaylistItems>
   );
 }
