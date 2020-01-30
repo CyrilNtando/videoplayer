@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import Video from '../Video';
 import Playlist from './Playlist';
-import StyledVideoPlater from '../styles/StyledVideoPlayer';
+import StyledVideoPlayer from '../styles/StyledVideoPlayer';
 const theme = {
   bgColor: '#353535',
   bgColorItem: '#414141',
@@ -22,6 +22,14 @@ const themeLight = {
   color: '353535'
 };
 const VideoPlayer = props => {
+  const videos = JSON.parse(document.querySelector('[name="videos"]').value);
+  const [state, setState] = useState({
+    videos: videos.playlist,
+    activeVideo: videos.playlist[0],
+    nightMode: true,
+    playlistId: videos.playlistId,
+    autoplay: false
+  });
   const nightModeCallBack = () => {};
   const endCallBack = () => {};
   const progressCallBack = () => {};
@@ -36,7 +44,7 @@ const VideoPlayer = props => {
             progressCallBack={progressCallBack}
           />
           <Playlist
-            videos={state.activeVideos}
+            videos={state.videos}
             active={state.activeVideo}
             nightModeCallBack={nightModeCallBack}
             nightMode={state.nightMode}

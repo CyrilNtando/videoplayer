@@ -8,7 +8,7 @@ function Playlist({ videos, active, nightMode, nightModeCallBack }) {
     <StyledPlaylist>
       <NightMode nightModeCallBack={nightModeCallBack} nightMode={nightMode} />
       <PlaylistHeader active={active} total={videos.length} />
-      <PlaylistItems video={videos} active={active} />
+      <PlaylistItems videos={videos} active={active} />
     </StyledPlaylist>
   );
 }
