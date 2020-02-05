@@ -69,7 +69,18 @@ const VideoPlayer = ({ match, history, location }) => {
       autoplay: false
     });
   };
-  const progressCallBack = () => {};
+  const progressCallBack = e => {
+    if (e.playedSeconds > 10 && e.playedSeconds < 11) {
+      setState({
+        ...state,
+        videos: state.videos.map(element => {
+          return element.id === state.activeVideo.id
+            ? { ...element, played: true }
+            : element;
+        })
+      });
+    }
+  };
   return (
     <ThemeProvider theme={state.nightMode ? theme : themeLight}>
       {state.videos !== null ? (
