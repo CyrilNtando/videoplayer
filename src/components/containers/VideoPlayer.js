@@ -53,7 +53,9 @@ const VideoPlayer = ({ match, history, location }) => {
     state.videos
   ]);
 
-  const nightModeCallBack = () => {};
+  const nightModeCallBack = () => {
+    setState(prev => ({ ...prev, nightMode: !prev.nightMode }));
+  };
   const endCallBack = () => {};
   const progressCallBack = () => {};
   return (
