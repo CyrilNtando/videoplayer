@@ -56,7 +56,19 @@ const VideoPlayer = ({ match, history, location }) => {
   const nightModeCallBack = () => {
     setState(prev => ({ ...prev, nightMode: !prev.nightMode }));
   };
-  const endCallBack = () => {};
+  const endCallBack = () => {
+    const videoId = match.params.activeVideo;
+    const currentVideoIndex = state.videos.findIndex(
+      video => video.id === videoId
+    );
+    const nextVideo =
+      currentVideoIndex === state.videos.length - 1 ? 0 : currentVideoIndex + 1;
+
+    history.push({
+      pathname: `/${state.videos[nextVideo].id}`,
+      autoplay: false
+    });
+  };
   const progressCallBack = () => {};
   return (
     <ThemeProvider theme={state.nightMode ? theme : themeLight}>
